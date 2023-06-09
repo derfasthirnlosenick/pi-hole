@@ -413,6 +413,10 @@ RestartDNS() {
     "${PI_HOLE_BIN_DIR}"/pihole restartdns
 }
 
+ReloadDNS() {
+    "${PI_HOLE_BIN_DIR}"/pihole restartdns reload
+}
+
 SetQueryLogOptions() {
     addOrEditKeyValPair "${setupVars}" "API_QUERY_LOG_SHOW" "${args[2]}"
 }
@@ -738,7 +742,7 @@ AddCustomDNSAddress() {
 
     # Restart dnsmasq to load new custom DNS entries only if $reload not false
     if [[ ! $reload == "false" ]]; then
-        RestartDNS
+        ReloadDNS
     fi
 }
 
@@ -765,7 +769,7 @@ RemoveCustomDNSAddress() {
 
     # Restart dnsmasq to load new custom DNS entries only if reload is not false
     if [[ ! $reload == "false" ]]; then
-        RestartDNS
+        ReloadDNS
     fi
 }
 
